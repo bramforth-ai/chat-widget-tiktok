@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat Widget Configurator</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Add this line for the widget CSS -->
+  <link rel="stylesheet" href="./dist/styles.min.css">
+</head>
+
+<body>
+  <header>
+    <h1>Chat Widget Configurator</h1>
+    <p>Configure your widget appearance and export the configuration.</p>
+  </header>
+
+  <main>
+    <!-- Widget Type Selection -->
+    <section class="config-section">
+      <h2>Widget Type</h2>
+      <div class="control-group">
+        <label class="radio-label">
+          <input type="radio" name="widget-type" value="voice" checked>
+          <span>Voice-Enabled</span>
+        </label>
+        <label class="radio-label">
+          <input type="radio" name="widget-type" value="text">
+          <span>Text-Only</span>
+        </label>
+      </div>
+      <p class="hint">The text-only version is smaller and doesn't require microphone permissions.</p>
+    </section>
+
+    <!-- Basic Settings -->
+    <section class="config-section">
+      <h2>Basic Settings</h2>
+
+      <div class="control-row">
+        <label for="widget-title">Widget Title:</label>
+        <input type="text" id="widget-title" value="AI Assistant">
+      </div>
+
+      <div class="control-row">
+        <label for="welcome-message">Welcome Message:</label>
+        <input type="text" id="welcome-message" value="Welcome! How can I help you today?">
+      </div>
+
+      <div class="control-row">
+        <label>Position:</label>
+        <div class="select-group">
+          <select id="widget-position">
+            <option value="bottom-right">Bottom Right</option>
+            <option value="bottom-left">Bottom Left</option>
+            <option value="top-right">Top Right</option>
+            <option value="top-left">Top Left</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- Colors -->
+    <section class="config-section">
+      <h2>Colors</h2>
+
+      <div class="color-grid">
+        <div class="color-item">
+          <label for="primary-color">Primary Color:</label>
+          <input type="color" id="primary-color" value="#1e293b">
+        </div>
+
+        <div class="color-item">
+          <label for="primary-hover">Primary Hover:</label>
+          <input type="color" id="primary-hover" value="#0f172a">
+        </div>
+
+        <div class="color-item">
+          <label for="accent-color">Accent Color:</label>
+          <input type="color" id="accent-color" value="#3b82f6">
+        </div>
+
+        <div class="color-item">
+          <label for="accent-hover">Accent Hover:</label>
+          <input type="color" id="accent-hover" value="#2563eb">
+        </div>
+      </div>
+
+      <h3>Message Colors</h3>
+      <div class="color-grid">
+        <div class="color-item">
+          <label for="assistant-bg">Assistant Background:</label>
+          <input type="color" id="assistant-bg" value="#ffffff">
+        </div>
+
+        <div class="color-item">
+          <label for="assistant-text">Assistant Text:</label>
+          <input type="color" id="assistant-text" value="#1e293b">
+        </div>
+
+        <div class="color-item">
+          <label for="user-bg">User Background:</label>
+          <input type="color" id="user-bg" value="#3b82f6">
+        </div>
+
+        <div class="color-item">
+          <label for="user-text">User Text:</label>
+          <input type="color" id="user-text" value="#ffffff">
+        </div>
+      </div>
+    </section>
+
+    <!-- Icons -->
+    <section class="config-section">
+      <h2>Icons</h2>
+
+      <!-- Button Icon -->
+      <div class="icon-config">
+        <h3>Button Icon</h3>
+
+        <div class="control-group">
+          <label class="radio-label">
+            <input type="radio" name="button-icon-type" value="icon" checked>
+            <span>Icon</span>
+          </label>
+          <label class="radio-label">
+            <input type="radio" name="button-icon-type" value="image">
+            <span>Image</span>
+          </label>
+        </div>
+
+        <div class="icon-option" data-for="button-icon">
+          <div class="control-row">
+            <label for="button-icon">Select Icon:</label>
+            <select id="button-icon">
+              <option value="fa-comment-dots">Chat Bubble</option>
+              <option value="fa-headset">Headset</option>
+              <option value="fa-robot">Robot</option>
+              <option value="fa-message">Message</option>
+              <option value="fa-comments">Comments</option>
+            </select>
+          </div>
+
+          <div class="control-row">
+            <label for="button-icon-color">Icon Color:</label>
+            <input type="color" id="button-icon-color" value="#3b82f6">
+          </div>
+        </div>
+
+        <div class="image-option" data-for="button-image" style="display: none;">
+          <div class="control-row">
+            <label for="button-image-url">Image URL:</label>
+            <input type="text" id="button-image-url" placeholder="https://example.com/image.png">
+          </div>
+
+          <div class="control-row">
+            <label for="button-image-upload">Upload Image:</label>
+            <input type="file" id="button-image-upload" accept="image/*">
+          </div>
+
+          <div class="image-preview" id="button-image-preview">
+            <div class="preview-placeholder">Image preview will appear here</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Assistant Icon -->
+      <div class="icon-config">
+        <h3>Assistant Icon</h3>
+
+        <div class="control-group">
+          <label class="radio-label">
+            <input type="radio" name="assistant-icon-type" value="icon" checked>
+            <span>Icon</span>
+          </label>
+          <label class="radio-label">
+            <input type="radio" name="assistant-icon-type" value="image">
+            <span>Image</span>
+          </label>
+        </div>
+
+        <div class="icon-option" data-for="assistant-icon">
+          <div class="control-row">
+            <label for="assistant-icon">Select Icon:</label>
+            <select id="assistant-icon">
+              <option value="fa-robot">Robot</option>
+              <option value="fa-user-tie">Support Agent</option>
+              <option value="fa-user-astronaut">Astronaut</option>
+              <option value="fa-brain">AI Brain</option>
+              <option value="fa-magic">Magic</option>
+            </select>
+          </div>
+
+          <div class="control-row">
+            <label for="assistant-icon-color">Icon Color:</label>
+            <input type="color" id="assistant-icon-color" value="#3b82f6">
+          </div>
+        </div>
+
+        <div class="image-option" data-for="assistant-image" style="display: none;">
+          <div class="control-row">
+            <label for="assistant-image-url">Image URL:</label>
+            <input type="text" id="assistant-image-url" placeholder="https://example.com/image.png">
+          </div>
+
+          <div class="control-row">
+            <label for="assistant-image-upload">Upload Image:</label>
+            <input type="file" id="assistant-image-upload" accept="image/*">
+          </div>
+
+          <div class="image-preview" id="assistant-image-preview">
+            <div class="preview-placeholder">Image preview will appear here</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Size & Features -->
+    <section class="config-section">
+      <h2>Size & Features</h2>
+
+      <div class="control-row">
+        <label for="button-size">Button Size:</label>
+        <input type="range" id="button-size" min="2.5" max="5" step="0.5" value="3.5">
+        <span id="button-size-display">3.5rem</span>
+      </div>
+
+      <div class="control-row">
+        <label for="widget-width">Widget Width:</label>
+        <input type="range" id="widget-width" min="16" max="32" step="1" value="24">
+        <span id="widget-width-display">24rem</span>
+      </div>
+
+      <div class="control-row">
+        <label for="typing-speed">Typing Speed:</label>
+        <select id="typing-speed">
+          <option value="slow">Slow</option>
+          <option value="normal" selected>Normal</option>
+          <option value="fast">Fast</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label class="checkbox-label">
+          <input type="checkbox" id="enable-markdown" checked>
+          <span>Enable Markdown</span>
+        </label>
+      </div>
+
+      <div class="voice-settings">
+        <h3>Voice Settings</h3>
+        <div class="control-group">
+          <label class="checkbox-label">
+            <input type="checkbox" id="enable-voice" checked>
+            <span>Enable Voice</span>
+          </label>
+        </div>
+
+        <div class="control-row">
+          <label for="agent-id">ElevenLabs Agent ID:</label>
+          <input type="text" id="agent-id" value="6OFeXYiQ86ij4TkiYiy6">
+        </div>
+
+        <h4>Voice Transcripts</h4>
+        <div class="control-group">
+          <label class="checkbox-label">
+            <input type="checkbox" id="show-user-transcripts" checked>
+            <span>Show User Speech as Text</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="show-assistant-transcripts" checked>
+            <span>Show AI Speech as Text</span>
+          </label>
+        </div>
+        <p class="hint">When enabled, spoken words will appear as text messages in the chat.</p>
+      </div>
+    </section>
+
+    <!-- Connection -->
+    <section class="config-section">
+      <h2>Connection</h2>
+      <div class="control-row">
+        <label for="websocket-url">WebSocket URL:</label>
+        <input type="text" id="websocket-url" value="wss://responses-api-pabau-whatsapp-new.onrender.com">
+      </div>
+    </section>
+
+    <!-- Preview & Export -->
+    <section class="config-section">
+      <h2>Preview & Export</h2>
+      <div class="button-group">
+        <button id="apply-config" class="primary-button">Apply & Preview</button>
+        <button id="reset-config" class="secondary-button">Reset</button>
+      </div>
+
+      <div class="export-section">
+        <h3>Configuration Code</h3>
+        <pre id="config-output"></pre>
+        <button id="copy-config" class="secondary-button">Copy Configuration</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="configurator.js"></script>
+  <script src="image-utils.js"></script>
+</body>
+
+</html>
